@@ -9,8 +9,6 @@ class Cliente{
     // Construtor
     public Cliente(String nome, String cpf, String nascimento, String endereco, int idade){
 
-        System.out.println(validarCPF(cpf));
-
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = nascimento;

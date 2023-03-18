@@ -6,12 +6,15 @@ class Sinistro{
 
     public Sinistro (String data, String endereco){
 
-
         this.data = data;
         this.endereco = endereco;
     }
 
-    
+    public long gerarID(){
+        /* Retorna um ID criado randomicamente (ainda não tem um modo de armazenar o valor) */
+        double id = Math.random() * 10000;
+        return Math.round(id);
+    }
 
     public int getId(){
         return this.id;
