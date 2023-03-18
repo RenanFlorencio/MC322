@@ -25,7 +25,7 @@ class Cliente{
          return saida;
     }
 
-    private boolean validarCPF (String cpf){
+    public boolean validarCPF (String cpf){
         /* Verifica se o CPF informado é válido */
 
         // Formatando o CPF
