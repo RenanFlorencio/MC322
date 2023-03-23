@@ -11,6 +11,10 @@ class Veiculo{
         this.marca = marca;
     }
 
+    public String toString(){
+        return "Placa:" + this.placa + "\nModelo:" + this.modelo + "\nMarca:" + this.marca + "\n";
+    }
+
     // Getters e Setters
     public String getPlaca(){
         return this.placa;

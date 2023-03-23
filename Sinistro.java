@@ -3,17 +3,23 @@ class Sinistro{
     private int id;
     private String data;
     private String endereco;
+    private static int cont_id = 0;
 
     public Sinistro (String data, String endereco){
 
+        this.id = gerarID();
         this.data = data;
         this.endereco = endereco;
     }
 
-    public long gerarID(){
-        /* Retorna um ID criado randomicamente (ainda não tem um modo de armazenar o valor) */
-        double id = Math.random() * 10000;
-        return Math.round(id);
+    public String toString(){
+        return "ID:" + this.id + "\nData:" + this.data + "\nEndereco:" + this.endereco +"\n";
+    }
+
+    public int gerarID(){
+        int id = cont_id;
+        cont_id++;
+        return id;
     }
 
     public int getId(){

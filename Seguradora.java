@@ -14,6 +14,10 @@ class Seguradora {
         this.endereco = endereco;
     }
 
+    public String toString(){
+        return "Nome:" + this.nome + "\nEmail:" + this.email + "\nTelefone:" + this.telefone + "\nEndereco:" + this.endereco + "\n";
+    }
+
     public String getNome(){
         return this.nome;
     }

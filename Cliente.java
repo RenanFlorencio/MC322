@@ -8,7 +8,6 @@ class Cliente{
 
     // Construtor
     public Cliente(String nome, String cpf, String nascimento, String endereco, int idade){
-
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = nascimento;
@@ -17,11 +16,9 @@ class Cliente{
     }
 
     public String toString(){
-        /* Retorna uma string formatada da classe */
 
-        String saida = "Nome:" + this.nome + "\n CPF:" + this.cpf + "\n"
-         + "Data de Nascimento:" + this.dataNascimento + "\n Endereco:" + this.endereco + "\n Idade:" + this.idade + "\n";
-
+        String saida = "Nome:" + this.nome + "\nCPF:" + this.cpf + "\n"
+         + "Data de Nascimento:" + this.dataNascimento + "\nEndereco:" + this.endereco + "\nIdade:" + this.idade + "\n";
          return saida;
     }
 
@@ -29,8 +26,7 @@ class Cliente{
         /* Verifica se o CPF informado é válido */
 
         // Formatando o CPF
-        cpf = cpf.replaceAll("-", "");
-        cpf = cpf.replaceAll("\\.", "");
+        cpf = cpf.replaceAll("[^\\d]", "");
         int tamanhoCPF = cpf.length();
 
         // Verificando a quantidade de digitos
