@@ -3,7 +3,8 @@ class Veiculo{
     private String placa;
     private String marca;
     private String modelo;
-    
+    private int anoFabricacao;
+
     // Construtor
     public Veiculo(String placa, String modelo, String marca){
         this.placa = placa;
@@ -12,7 +13,7 @@ class Veiculo{
     }
 
     public String toString(){
-        return "Placa:" + this.placa + "\nModelo:" + this.modelo + "\nMarca:" + this.marca + "\n";
+        return "Placa:" + this.placa + "\nModelo:" + this.modelo + "\nMarca:" + this.marca + "\nAno Fabricacao:" + this.anoFabricacao +"\n";
     }
 
     // Getters e Setters
@@ -38,6 +39,14 @@ class Veiculo{
 
     public void setModelo(String modelo){
         this.modelo = modelo;
+    }
+
+    public int getAnoFabricacao() {
+        return anoFabricacao;
+    }
+
+    public void setAnoFabricacao(int anoFabricacao) {
+        this.anoFabricacao = anoFabricacao;
     }
 
 }

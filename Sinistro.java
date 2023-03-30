@@ -1,40 +1,44 @@
+import java.util.Date;
+
 class Sinistro{
 
-    private int id;
-    private String data;
+    private final int ID;
+    private Date data;
     private String endereco;
-    private static int cont_id = 0;
+    private Veiculo veiculo;
+    private Seguradora seguradora;
+    private Cliente cliente;
+    private static int cont_ID = 0;
 
-    public Sinistro (String data, String endereco){
+    public Sinistro (Date data, String endereco, Veiculo veiculo, Seguradora seguradora, Cliente cliente){
 
-        this.id = gerarID();
+        this.ID = gerarID();
         this.data = data;
         this.endereco = endereco;
+        this.veiculo = veiculo;
+        this.seguradora = seguradora;
+        this.cliente = cliente;
     }
 
     public String toString(){
-        return "ID:" + this.id + "\nData:" + this.data + "\nEndereco:" + this.endereco +"\n";
+        return "ID:" + this.ID + "\nData:" + this.data + "\nEndereco:" + this.endereco +"\n";
     }
 
     public int gerarID(){
-        int id = cont_id;
-        cont_id++;
-        return id;
+        int ID = cont_ID;
+        cont_ID++;
+        return ID;
     }
 
-    public int getId(){
-        return this.id;
+    public int getID(){
+        return this.ID;
     }
 
-    public void setId(int id){
-        this.id = id;
-    }
-
-    public String getData(){
+    public Date getData(){
         return this.data;
     }
 
-    public void setData(String data){
+    public void setData(Date data){
         this.data = data;
     }
 
@@ -44,5 +48,29 @@ class Sinistro{
 
     public void setEndereco(String endereco){
         this.endereco = endereco;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+
+    public Seguradora getSeguradora() {
+        return seguradora;
+    }
+
+    public void setSeguradora(Seguradora seguradora) {
+        this.seguradora = seguradora;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }
