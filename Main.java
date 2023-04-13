@@ -1,20 +1,26 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
+
 
 public class Main{
 
     public static void main(String[] args) {
         
+        Scanner scanner = new Scanner(System.in);
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date data = new Date();
+
         Cliente cliente1;
 
-        Date data = new Date();
-        System.out.println(data);
+        System.out.println("Informe o CNPJ: ");
+        String cnpj = scanner.nextLine();
 
-        cliente1 = new Cliente_PJ("Renan", data, "blabla", "bla", "cpromtoa", "sim", "45959165821", data);
-        System.out.println(cliente1);
-
-        cliente1.setNome("Pedro");
-        System.out.println(cliente1);
-
+        if (Cliente_PJ.validarCNPJ(cnpj)){
+            cliente1 = new Cliente_PJ("Renan", data, "blabla", "bla", "cpromtoa", "sim", "13.347.016/0001-17", data);
+            System.out.println("Deu certo");
+        }
+        
         Seguradora seg1;
 
         Veiculo veic1;

@@ -25,7 +25,7 @@ public class Cliente_PF extends Cliente {
         return super.toString() + "Cliente_PF\nCPF:" + CPF + "\ndataNascimento:" + dataNascimento + "\n";
     }
 
-    public boolean validarCPF (String cpf){
+    public static boolean validarCPF (String cpf){
         /* Verifica se o CPF informado é válido */
 
         // Formatando o CPF

@@ -1,7 +1,7 @@
 import java.util.Date;
 import java.util.ArrayList;
 
-class Cliente{
+abstract class Cliente{
 
     private String nome;
     private Date dataLicenca;
@@ -23,7 +23,6 @@ class Cliente{
         this.listaVeiculos = new ArrayList<Veiculo>();
     }
 
-    
     public String toString() {
         return "Cliente \nNome:" + nome + ", \nData Licenca:" + dataLicenca + "\nEndereco:" + endereco + "\nEducacao:"
                 + educacao + "\nGenero:" + genero + "\nClasse Economica:" + classeEconomica + "\n";
