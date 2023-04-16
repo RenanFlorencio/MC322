@@ -1,31 +1,35 @@
-import java.util.Date;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 abstract class Cliente{
 
     private String nome;
-    private Date dataLicenca;
     private String endereco;
-    private String educacao;
-    private String genero;
-    private String classeEconomica;
-    private ArrayList<Veiculo> listaVeiculos; // Pensar se devo usar ArrayList ou LinkedList
+    private LinkedList<Veiculo> listaVeiculos; /* A lista de veículos não será longa, portanto é mais últil ter uma rápida 
+                                                inserção e remoção */ 
 
     // Construtor
-    public Cliente(String nome, Date dataLicenca, String endereco, String educacao, String genero,
-            String classeEconomica) {
+    public Cliente(String nome, String endereco) {
         this.nome = nome;
-        this.dataLicenca = dataLicenca;
         this.endereco = endereco;
-        this.educacao = educacao;
-        this.genero = genero;
-        this.classeEconomica = classeEconomica;
-        this.listaVeiculos = new ArrayList<Veiculo>();
+        this.listaVeiculos = new LinkedList<Veiculo>(); 
     }
 
     public String toString() {
-        return "Cliente \nNome:" + nome + ", \nData Licenca:" + dataLicenca + "\nEndereco:" + endereco + "\nEducacao:"
-                + educacao + "\nGenero:" + genero + "\nClasse Economica:" + classeEconomica + "\n";
+        String str = "CLIENTE\nNome: " + nome + "\nEndereco: " + endereco + "\n";
+        if (listaVeiculos.size() == 0){
+            str += "Não há veículos cadastrados\n";
+        }
+        else{
+            str += "Veículos: " + listaVeiculos + "\n";
+        }
+
+        return str;
+    }
+
+    public boolean adicionarVeiculo(Veiculo veiculo){
+
+        listaVeiculos.add(veiculo);
+        return true;
     }
 
     // Getters e Setters
@@ -37,44 +41,12 @@ abstract class Cliente{
         this.nome = nome;
     }
 
-    public Date getDataLicenca(){
-        return this.dataLicenca;
-    }
-
-    public void setdataLicenca(Date dataLicenca){
-        this.dataLicenca = dataLicenca;
-    }
-
     public String getEndereco(){
         return this.endereco;
     }
 
     public void setEndereco(String endereco){
         this.endereco = endereco;
-    }
-
-    public String getEducacao() {
-        return educacao;
-    }
-
-    public void setEducacao(String educacao) {
-        this.educacao = educacao;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public String getClasseEconomica() {
-        return classeEconomica;
-    }
-
-    public void setClasseEconomica(String classeEconomica) {
-        this.classeEconomica = classeEconomica;
     }
 
 }

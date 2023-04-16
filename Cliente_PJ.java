@@ -5,22 +5,21 @@ public class Cliente_PJ extends Cliente {
     private final String CNPJ;
     private Date dataFundacao;
 
-    public Cliente_PJ(String nome, Date dataLicenca, String endereco, String educacao, String genero,
-    String classeEconomica, String CNPJ, Date dataFundacao){
+    public Cliente_PJ(String nome, String endereco, String CNPJ, Date dataFundacao){
 
-        super(nome, dataLicenca, endereco, educacao, genero, classeEconomica);
-
+        super(nome, endereco);
         this.CNPJ = CNPJ;
         this.dataFundacao = dataFundacao;
     }
 
     @Override
     public String toString() {
-        String saida = super.toString() + "Cliente_PJ\nCNPJ:" + CNPJ + "\ndataFundacao:" + dataFundacao + "\n";
+        String saida = super.toString() + "CNPJ: " + CNPJ + "\ndataFundacao: " + dataFundacao + "\n";
         return saida;
     }
 
     public static boolean validarCNPJ(String cnpj){
+        
         cnpj = cnpj.replaceAll("[^\\d]", "");
         int tamanhoCNPJ = cnpj.length();
 

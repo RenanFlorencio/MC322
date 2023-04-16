@@ -10,6 +10,10 @@ class Sinistro{
     private Cliente cliente;
     private static int cont_ID = 0;
 
+    public Sinistro(){
+        this.ID = gerarID();
+    }
+
     public Sinistro (Date data, String endereco, Veiculo veiculo, Seguradora seguradora, Cliente cliente){
 
         this.ID = gerarID();

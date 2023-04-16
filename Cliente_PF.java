@@ -4,25 +4,28 @@ public class Cliente_PF extends Cliente {
     
     private final String CPF;
     private Date dataNascimento;
+    private Date dataLicenca;
+    private String educacao;
+    private String genero;
+    private String classeEconomica;
 
     public Cliente_PF(String nome, Date dataLicenca, String endereco, String educacao, String genero,
     String classeEconomica, String CPF, Date dataNascimento){
 
-        super(nome, dataLicenca, endereco, educacao, genero, classeEconomica);
-
-        // Verificar como fazer isso de maneira melhor
-        if (validarCPF(CPF)){
-            this.CPF = CPF;
-        }
-        else{
-            this.CPF = null;
-        }
+        super(nome, endereco);
+        this.CPF = CPF;
         this.dataNascimento = dataNascimento;
+        this.dataLicenca = dataLicenca;
+        this.educacao = educacao;
+        this.genero = genero;
+        this.classeEconomica = classeEconomica;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "Cliente_PF\nCPF:" + CPF + "\ndataNascimento:" + dataNascimento + "\n";
+        return super.toString() + "CPF: " + CPF + "\nData de Nascimento: " + dataNascimento + "\nData da Licenca: "
+        + dataLicenca + "\nEducacao: " + educacao + "\nGenero: " + genero + "\n";
+
     }
 
     public static boolean validarCPF (String cpf){
@@ -103,6 +106,37 @@ public class Cliente_PF extends Cliente {
 
     public String getCPF(){
         return this.CPF;
+    }
+    public Date getDataLicenca() {
+        return dataLicenca;
+    }
+
+    public void setDalaLicenca(Date dataLicenca) {
+        this.dataLicenca = dataLicenca;
+    }
+
+    public String getEducacao() {
+        return educacao;
+    }
+
+    public void setEducacao(String educacao) {
+        this.educacao = educacao;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getClasseEconomica() {
+        return classeEconomica;
+    }
+
+    public void setClasseEconomica(String classeEconomica) {
+        this.classeEconomica = classeEconomica;
     }
 
 }
