@@ -6,10 +6,11 @@ class Veiculo{
     private int anoFabricacao;
 
     // Construtor
-    public Veiculo(String placa, String modelo, String marca){
+    public Veiculo(String placa, String modelo, String marca, int anoFabricacao){
         this.placa = placa;
         this.modelo = modelo;
         this.marca = marca;
+        this.anoFabricacao = anoFabricacao;
     }
 
     public String toString(){

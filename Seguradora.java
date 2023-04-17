@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.ArrayList;
 
 class Seguradora {
@@ -23,11 +24,11 @@ class Seguradora {
     public String visualizarSinistro(String cliente){
     /* Retorna uma string com os sinistros relacionados ao cliente fornecido */ 
 
-        String str = "";
+        String str = "SINISTROS DE " + cliente;
         int cont = 0;
         for (Sinistro sinistro : listaSinistros) {
 
-            if (sinistro.getCliente().getNome() == cliente) {      
+            if (cliente.equals(sinistro.getCliente().getNome())) {      
                 str += sinistro.toString();
                 cont += 1;
             }
@@ -39,16 +40,32 @@ class Seguradora {
         return str;
     }
 
-    public boolean gerarSinistro(){
+    public boolean gerarSinistro(Date data, String endereco, Veiculo veiculo, Seguradora seguradora, Cliente cliente){
         /* Gera um sinistro vazio */
 
-        Sinistro novo = new Sinistro();
+        Sinistro novo = new Sinistro(data, endereco, veiculo, seguradora, cliente);
         listaSinistros.add(novo);
         return true;
     }
 
+    public String listarSinistros(){
+        int contador = 1;
+        String str = "";
+        for (Sinistro sinistro : this.getListaSinistros()) {
+            str += contador + ":\n" + sinistro;
+        }
+        return str;
+    }
+
     public String listarClientes(String tipoCliente){
         /* Lista todos os clientes do tipo passado como parâmetro */
+
+        if (tipoCliente.equals("PJ")){
+            tipoCliente = "Cliente_PJ";
+        }
+        else if (tipoCliente.equals("PF")){
+            tipoCliente = "Cliente_PF";
+        }
 
         String str = "";
         for (Cliente cliente : listaClientes) {
@@ -62,8 +79,11 @@ class Seguradora {
 
     public boolean cadastrarCliente(Cliente cliente){
 
-        listaClientes.add(cliente);
-        return true;
+        if(!listaClientes.contains(cliente)){
+            listaClientes.add(cliente);
+            return true;
+        }
+        return false;
     }
 
     public boolean removerCliente(Cliente cliente){
@@ -115,5 +135,13 @@ class Seguradora {
 
     public void setEndereco(String endereco){
         this.endereco = endereco;
+    }
+
+    public ArrayList<Cliente> getListaClientes(){
+        return this.listaClientes;
+    }
+
+    public ArrayList<Sinistro> getListaSinistros(){
+        return this.listaSinistros;
     }
 }

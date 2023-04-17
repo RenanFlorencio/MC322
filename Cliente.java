@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-abstract class Cliente{
+abstract class Cliente{ // Não é permitido criar um cliente que não seja PF ou PJ
 
     private String nome;
     private String endereco;
@@ -28,8 +28,11 @@ abstract class Cliente{
 
     public boolean adicionarVeiculo(Veiculo veiculo){
 
-        listaVeiculos.add(veiculo);
-        return true;
+        if (!listaVeiculos.contains(veiculo)){
+            listaVeiculos.add(veiculo);
+            return true;
+        }
+        return false;
     }
 
     // Getters e Setters
@@ -47,6 +50,10 @@ abstract class Cliente{
 
     public void setEndereco(String endereco){
         this.endereco = endereco;
+    }
+
+    public LinkedList<Veiculo> getListaVeiculos(){
+        return this.listaVeiculos;
     }
 
 }
