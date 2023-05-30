@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class Seguradora {
-
+    private final String CNPJ;
     private String nome;
     private String telefone;
     private String email;
@@ -12,8 +12,8 @@ class Seguradora {
     private ArrayList<Cliente> listaClientes; /* Quando houver um número grande de clientes, é mais importante buscar rapidamente
     do que adicionar novos clientes rapidamente */
     
-    public Seguradora(String nome, String telefone, String email, String endereco){
-        
+    public Seguradora(String cnpj, String nome, String telefone, String email, String endereco){
+        this.CNPJ = cnpj;
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
@@ -75,6 +75,16 @@ class Seguradora {
         for(Cliente cliente : listaClientes){
             if (cliente.getIdentificacao().equals(identificacao)){
                 return cliente;
+            }
+        }
+        return null;
+    }
+
+    public Seguro buscarSeguro(int id){
+
+        for (Seguro seguro : listaSeguros){
+            if (seguro.getId() == id){
+                return seguro;
             }
         }
         return null;
@@ -146,6 +156,17 @@ class Seguradora {
         return listaSeguros.remove(remover);
     }
 
+    public String listarClientes(){
+
+        String saida = "";
+        int contador = 1;
+        for (Cliente cliente : listaClientes){
+            saida += contador + "- " + cliente.getNome() + ": " + cliente.getIdentificacao() + " - " + cliente.getClass().getName() + "\n";
+            contador++;
+        }
+        return saida;
+    }
+
     public double calcularReceita(){
 
         double total = 0;
@@ -155,6 +176,11 @@ class Seguradora {
         }
         return total;
     }
+
+    public String getCNPJ() {
+        return CNPJ;
+    }
+    
 
     public String getNome(){
         return this.nome;

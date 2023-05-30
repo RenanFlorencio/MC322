@@ -1,10 +1,12 @@
 
 public enum MenuOperacoes{
     
-    CADASTRAR("1- Cadastrar", new SubMenu[]{
+    CADASTRAR("1- Cadastrar ou atualizar", new SubMenu[]{
         SubMenu.CADASTRAR_CLIENTE, 
         SubMenu.CADASTRAR_SEGURADORA, 
         SubMenu.CADASTRAR_VEICULO,
+        SubMenu.CADASTRAR_CONDUTOR,
+        SubMenu.ATUALIZAR_FROTA,
         SubMenu.VOLTAR}),
     LISTAR("2- Listar", new SubMenu[] {
         SubMenu.LISTAR_CLIENTES,
@@ -12,6 +14,8 @@ public enum MenuOperacoes{
         SubMenu.LISTAR_SINISTRO_S,
         SubMenu.LISTAR_VEICULO_C,
         SubMenu.LISTAR_VEICULO_S,
+        SubMenu.LISTAR_FROTAS_C,
+        SubMenu.LISTAR_SEGUROS,
         SubMenu.VOLTAR
     }),
     EXCLUIR("3- Excluir", new SubMenu[] {

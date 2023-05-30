@@ -45,6 +45,26 @@ public class Cliente_PF extends Cliente {
         return listaVeiculos.remove(veiculo);
     }
 
+    public Veiculo buscarVeiculo(String placa){
+
+        for (Veiculo veiculo : listaVeiculos){
+            if (veiculo.getPlaca().equals(placa)){
+                return veiculo;
+            }
+        }
+        return null;
+    }
+
+    public String listarVeiculos(){
+        String saida = "";
+        int contador = 1;
+        for (Veiculo veiculo : listaVeiculos){
+            saida += contador + "- " + veiculo.getModelo() + ": " + veiculo.getPlaca() + "\n";
+            saida += "-------------\n";
+        }
+        return saida;
+    }
+
     public int calculaIdade(){
         LocalDate now = LocalDate.now();
         LocalDate date = LocalDate.ofInstant(dataNascimento.toInstant(), ZoneId.systemDefault());

@@ -145,6 +145,15 @@ public class Entradas {
     public static Seguradora lerSeguradora(){
         Seguradora seg;
 
+
+        System.out.print("Informe o CNPJ da seguradora: ");
+        String cnpj = scanner.next();
+
+        if (!Validacao.validaCNPJ(cnpj)){
+            System.out.println("CNPj invalido");
+            return null;
+        }
+
         System.out.print("Informe o nome da seguradora: ");
         String nome = scanner.next();
 
@@ -157,7 +166,7 @@ public class Entradas {
         System.out.print("Informe o endereco da seguradora: ");
         String endereco = scanner.next();
     
-        seg = new Seguradora(nome, telefone, email, endereco);
+        seg = new Seguradora(cnpj, nome, telefone, email, endereco);
         return seg;
 
     }

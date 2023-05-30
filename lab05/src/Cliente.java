@@ -20,6 +20,11 @@ abstract class Cliente{ // Não é permitido criar um cliente que não seja PF o
         return str;
     }
 
+    public String listarVeiculos(){
+        // Só será usado em override
+        return null;
+    }
+
     // Getters e Setters
     public String getNome(){
         return this.nome;

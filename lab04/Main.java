@@ -49,7 +49,7 @@ public class Main{
         seg.calcularPrecoSeguroCliente(clPF);
         seg.calcularPrecoSeguroCliente(clPJ);
 
-        System.out.println("Receita total " + seg.getNome() + ": " + seg.calculaReceita());
+        System.out.println("Receita total " + seg.getNome() + ": " + seg.calculaReceita() + "\n");
 
         MenuOperacoes[] menuOperacoes = MenuOperacoes.values();
 
@@ -188,6 +188,8 @@ public class Main{
 
     public static boolean realizarOperacao(SubMenu operacao, ArrayList<Seguradora> listaSeguradoras) throws ParseException{
     
+        // Função suporte para realizar as operações desejadas no menu
+
         Scanner scanner = new Scanner(System.in);
         Seguradora seg = null;
         Cliente cliente = null;

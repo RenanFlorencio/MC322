@@ -31,10 +31,37 @@ public class Cliente_PJ extends Cliente {
         return saida;
     }
 
-    public boolean cadastrarFrota(){
+    public boolean cadastrarFrota(Frota frota){
 
-        Frota frota = Entradas.lerFrota();
-        return listaFrotas.add(frota);
+        if (!listaFrotas.contains(frota)){
+            return listaFrotas.add(frota);
+        }
+        return false;
+    }
+
+    public String listarVeiculos(){
+
+        int contador = 1;
+        String saida = "";
+        for (Frota frota : listaFrotas){
+            saida += frota.getCode() + "\n";
+            for (Veiculo veiculo : frota.getListaVeiculos()){
+                saida += contador + "- " + veiculo.getModelo() + ": " + veiculo.getPlaca() + "\n";
+                saida += "-------------\n";
+            }
+        }
+        return saida;
+    }
+
+    public ArrayList<Veiculo> getVeiculosPorFrota(String code){
+
+        Frota selec = null;
+        for (Frota frota : listaFrotas){
+            if (frota.getCode().equals(code)){
+                selec = frota;
+            }
+        }
+        return selec.getListaVeiculos();
     }
 
     public boolean atualizarFrota(){
