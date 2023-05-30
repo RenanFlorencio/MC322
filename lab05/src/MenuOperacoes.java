@@ -18,15 +18,20 @@ public enum MenuOperacoes{
         SubMenu.LISTAR_SEGUROS,
         SubMenu.VOLTAR
     }),
-    EXCLUIR("3- Excluir", new SubMenu[] {
+    EXCLUIR("3- Excluir ou desautorizar", new SubMenu[] {
         SubMenu.EXCLUIR_CLIENTE,
         SubMenu.EXCLUIR_SINISTRO,
         SubMenu.EXCLUIR_VEICULO,
+        SubMenu.DESAUTORIZAR_CONDUTOR,
         SubMenu.VOLTAR
     }),
     GERAR_SINISTRO("4- Gerar Sinistro", new SubMenu[] {}),
-    TRANFERIR_SEGURO("5- Transferir Seguro", new SubMenu[] {}),
-    CALCULA_RECEITA("6- Calcular Receita Seguradora", new SubMenu[] {});
+    GERAR_SEGURO("5- Gerar Seguro", new SubMenu[] {}),
+    TRANFERIR_SEGURO("6- Transferir Seguro", new SubMenu[] {
+        SubMenu.TRANSFERIR_SEGURO_PF,
+        SubMenu.TRANSFERIR_SEGURO_PJ,
+    }),
+    CALCULA_RECEITA("7- Calcular Receita Seguradora", new SubMenu[] {});
     
 
     public final String texto;

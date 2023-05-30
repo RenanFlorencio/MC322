@@ -47,9 +47,8 @@ abstract class Seguro {
         return 0;
     }
 
-    public boolean autorizarCondutor() throws ParseException{
+    public boolean autorizarCondutor(Condutor condutor) throws ParseException{
 
-        Condutor condutor = Entradas.lerCondutor();
         if (!getListaCondutores().contains(condutor)){
             return getListaCondutores().add(condutor);
         }
@@ -146,6 +145,9 @@ abstract class Seguro {
     }
     public Cliente getCliente() {
         return cliente;
+    }
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     public Seguradora getSeguradora() {
         return seguradora;

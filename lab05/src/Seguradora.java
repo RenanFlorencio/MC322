@@ -156,6 +156,14 @@ class Seguradora {
         return listaSeguros.remove(remover);
     }
 
+    public boolean transferirSeguro(Cliente transferidor, Cliente recipiente){
+
+        Seguro seguro = buscarSeguroCliente(transferidor.getIdentificacao());
+        seguro.setCliente(recipiente);
+        return true;
+
+    }
+
     public String listarClientes(){
 
         String saida = "";
@@ -175,6 +183,29 @@ class Seguradora {
 
         }
         return total;
+    }
+
+    public Seguro buscarSeguroCliente(String identificacao){
+
+        Cliente cliente = null;
+        for (Cliente cl : listaClientes){
+            if (cl.getIdentificacao() == identificacao){
+                cliente = cl;
+                break;
+            }
+        }
+        if (cliente == null){
+            System.out.print("Cliente inexistente!");
+            return null;
+        }
+
+        for (Seguro seguro : listaSeguros){
+            if (seguro.getCliente() == cliente){
+                return seguro;
+            }
+        }
+        System.out.print("Não há seguros para esse cliente!");
+        return null;
     }
 
     public String getCNPJ() {

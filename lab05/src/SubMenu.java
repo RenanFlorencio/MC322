@@ -12,9 +12,12 @@ public enum SubMenu {
     LISTAR_VEICULO_C("Listar Veículo por Cliente"),
     LISTAR_VEICULO_S("Listar Veículo por Seguradora"),
     LISTAR_FROTAS_C("Listar Frotas por Cliente"),
+    TRANSFERIR_SEGURO_PF("Transferir seguro de PF para PF"),
+    TRANSFERIR_SEGURO_PJ("Transferir seguro de PJ para PJ"),
     EXCLUIR_CLIENTE("Excluir Cliente"),
     EXCLUIR_VEICULO("Excluir Veículo"),
     EXCLUIR_SINISTRO("Excluir Sinistro"),
+    DESAUTORIZAR_CONDUTOR("Desautorizar Condutor"),
     VOLTAR("Voltar");
 
     private String texto;

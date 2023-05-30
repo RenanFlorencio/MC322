@@ -14,14 +14,17 @@ public class Main{
         Date date = new GregorianCalendar(2003, Calendar.JUNE, 18).getTime();
 
         Seguradora seg = new Seguradora("33617465000145", "Seguradora", "90919019", "seg@email.com", "rua dos bobos");
-        Cliente_PF cliente_PF = new Cliente_PF("sadasd", "dsada", "dsadsada", "dsadadwad", "45959165821", date);
+        Cliente_PF cliente1 = new Cliente_PF("sadasd", "dsada", "dsadsada", "dsadadwad", "45959165821", date);
+        Cliente_PF cliente2 = new Cliente_PF("222", "aaaa", "eee", "dsadadwad", "11047614839", date);
+
         Veiculo veic1 = new Veiculo("placa", "Corsa", "Rebaixado", 2012);
-        cliente_PF.cadastrarVeiculo(veic1);
+        cliente1.cadastrarVeiculo(veic1);
         listaSeguradoras.add(seg);
 
-        seg.cadastrarCliente(cliente_PF);
-        seg.gerarSeguro(cliente_PF);
+        seg.cadastrarCliente(cliente1);
+        seg.gerarSeguro(cliente1);
 
+        seg.transferirSeguro(cliente1, cliente2);
         
         Veiculo veic2 = new Veiculo("VAICORIN", "Saveiro", "Cromada", 2015);
         date = new GregorianCalendar(2003, Calendar.JUNE, 18).getTime();
@@ -111,55 +114,47 @@ public class Main{
                     // }
                     // break;
 
-                case TRANFERIR_SEGURO:
+                case GERAR_SEGURO:
 
+                    System.out.print("Informe o CNPJ da seguradora: ");
+                    String cnpj = scanner.next();
+                    System.out.print("Informe o CPF ou CNPJ do cliente: ");
+                    String identificacao = scanner.next();
                     seguradora = null;
-                    Cliente recipiente = null;
-                    Cliente transferidor = null;
 
-                    System.out.print("Informe o nome da seguradora: ");
-                    String seguradoraStr = scanner.next();  
-                    
-                    for(Seguradora seg1 : listaSeguradoras){
-                        if (seg1.getNome().equals(seguradoraStr)){
+                    for (Seguradora seg1 : listaSeguradoras){
+                        if (seg1.getCNPJ().equals(cnpj)){
                             seguradora = seg1;
-                        }
-                    }
-
-                    System.out.print("Informe o nome do cliente que irá transferir seu seguro: ");
-                    String transferidorStr = scanner.next();
-
-                    System.out.print("Informe o nome do cliente que irá receber os seguros: ");
-                    String recipienteStr = scanner.next();
-
-                    for(Cliente cl : seguradora.getListaClientes()){
-                        if (cl.getNome().equals(transferidorStr)){
-                            transferidor = cl;
-                        }
-                        else if (cl.getNome().equals(recipienteStr)){
-                            recipiente = cl;
-                        }
-                        else if (transferidor != null || recipiente != null){
                             break;
                         }
                     }
+                    if (seguradora == null){
+                        System.out.print("Seguradora não encontrada");
+                        break;
+                    }
+                    cliente = seguradora.buscarCliente(identificacao);
+                    if (!seguradora.gerarSeguro(cliente)){
+                        System.out.println("Falha ao criar seguro!");
+                    }
+                    break;
 
-                //     for(Veiculo veic : transferidor.getListaVeiculos()){
-                //         recipiente.adicionarVeiculo(veic);
-                //     }
-                //     transferidor.getListaVeiculos().clear();
-                //     seguradora.calcularPrecoSeguroCliente(transferidor);
-                //     seguradora.calcularPrecoSeguroCliente(recipiente);
-                //     break;
+                case TRANFERIR_SEGURO:
 
-                // case CALCULA_RECEITA:
-                //     double receita = 0;
+                    System.out.println(MenuOperacoes.exibirSubMenu(escolhaMenu));
+                    subop = MenuOperacoes.TRANFERIR_SEGURO.getSubMenu()[scanner.nextInt() - 1];
+                    if(!realizarOperacao(subop, listaSeguradoras)){
+                        System.out.println("Houve um erro durante a execução, verifique os documentos informados!");
+                    };
+                    break;
 
-                //     for(Seguradora seg1 : listaSeguradoras){
-                //         receita = seg1.calculaReceita();
-                //         System.out.println("O valor da receita de " + seg.getNome() + " é: " + receita);
-                //     }
-                //     break;
+                case CALCULA_RECEITA:
+                    double receita = 0;
+
+                    for(Seguradora seg1 : listaSeguradoras){
+                        receita = seg1.calcularReceita();
+                        System.out.println("O valor da receita de " + seg.getNome() + " é: " + receita);
+                    }
+                    break;
             }
 
             System.out.println("Operação finalizada!");
@@ -177,6 +172,9 @@ public class Main{
 
         Scanner scanner = new Scanner(System.in);
         Seguradora seg = null;
+        Condutor condutor = null;
+        Cliente cliente = null;
+        String identificacao;
         Frota frota = null;
         Cliente_PF cliente_PF = null;
         Cliente_PJ cliente_PJ = null;
@@ -233,11 +231,26 @@ public class Main{
             
             case CADASTRAR_CONDUTOR:
 
-                // TEM QUE FAZER
+                System.out.print("Informe o CNPJ da seguradora: ");
+                nome = scanner.next();
+                System.out.print("Informe o CPF ou CNPJ do Cliente responsável: ");
+                identificacao = scanner.next();
+                scanner.close();
+                Seguradora seguradora = null;
 
-                sdawda
+                for (Seguradora seg1 : listaSeguradoras){
+                    if (seg1.getCNPJ().equals(nome)){
+                        seguradora = seg1;
+                        break;
+                    }
+                }
+                if (seguradora == null){
+                    return false;
+                }
+                Seguro seguro = seguradora.buscarSeguroCliente(identificacao);
+                condutor = Entradas.lerCondutor();
 
-                Entradas.lerCondutor()
+                return seguro.autorizarCondutor(condutor);
 
             case CADASTRAR_SEGURADORA:
                 
@@ -306,7 +319,7 @@ public class Main{
             case EXCLUIR_CLIENTE:
 
                 System.out.print("Informe o CPF ou CNPJ do cliente a ser excluido: ");
-                String identificacao = scanner.next();
+                identificacao = scanner.next();
                 seg = null;
                 scanner.close();
 
@@ -316,6 +329,42 @@ public class Main{
                     }
                 }
                 return false;
+            
+            case DESAUTORIZAR_CONDUTOR:
+
+                System.out.print("Informe o CNPJ da seguradora: ");
+                cnpj = scanner.next();
+                System.out.print("Informe o CPF ou CNPJ do cliente resposável: ");
+                identificacao = scanner.next();
+                System.out.print("Informe o CPF do condutor: ");
+                nome = scanner.next();
+                scanner.close();
+                seguradora = null;
+                cliente = null;
+                seguro = null;
+
+                for (Seguradora seg1 : listaSeguradoras){
+                    if (seg1.getCNPJ().equals(cnpj)){
+                        seguradora = seg1;
+                        break;
+                    }
+                }
+                if (seguradora == null){
+                    return false;
+                }
+
+                seguro = seguradora.buscarSeguroCliente(identificacao);
+                if (seguro == null){
+                    return false;
+                }
+
+                for (Condutor cond : seguro.getListaCondutores()){
+                    if (cond.getCpf().equals(nome)){
+                        return seguro.getListaCondutores().remove(cond);
+                    }
+                }
+                return false;
+
 
             case EXCLUIR_SINISTRO:
 
@@ -367,10 +416,40 @@ public class Main{
 
                 return cliente_PF.removerVeiculo(veiculo);
 
+            case TRANSFERIR_SEGURO_PF:
+
+                System.out.print("Informe o CNPJ da seguradora: ");
+                cnpj = scanner.next();
+                System.out.print("Informe o CPF do transferidor: ");
+                String transfString = scanner.next();
+                System.out.print("Informe o CPF do recipiente: ");
+                String recpString = scanner.next();
+                scanner.close();
+                seguradora = null;
+
+                for (Seguradora seg1 : listaSeguradoras){
+                    if (seg1.getCNPJ().equals(cnpj)){
+                        seguradora = seg1;
+                    }
+                }
+                if (seguradora == null){
+                    return false;
+                }
+
+                seguro = seguradora.buscarSeguroCliente(transfString);
+                if (seguro == null || seguro.getClass() != Seguro_PF.class){
+                    return false;
+                }
+
+
+                seguro.setCliente(seguradora.buscarCliente(recpString));
+                Seguro_PF seguro_PF = (Seguro_PF)seguro;
+                seguro_PF.setCliente((Cliente_PF)seguradora.buscarCliente(recpString));
+                return true;
+
             case LISTAR_SEGUROS:
 
                 // TEM QUE FAZER
-                ASDAW
 
 
             case LISTAR_CLIENTES:
@@ -395,13 +474,13 @@ public class Main{
                 saida = "";
                 for (Seguradora seg1 : listaSeguradoras){
 
-                    for (Seguro seguro : seg1.getListaSeguros()){
+                    for (Seguro segr : seg1.getListaSeguros()){
 
-                        for (Condutor condutor : seguro.getListaCondutores()){
+                        for (Condutor cond : segr.getListaCondutores()){
 
-                            if (condutor.getListaSinistros().size() != 0){
-                                saida += condutor.getCpf() + ":\n";
-                                saida += condutor.getListaSinistros() + "\n";
+                            if (cond.getListaSinistros().size() != 0){
+                                saida += cond.getCpf() + ":\n";
+                                saida += cond.getListaSinistros() + "\n";
                                 saida += "--------------\n";
                             }
                         }
@@ -415,7 +494,7 @@ public class Main{
                     
             case LISTAR_SINISTRO_S:
                 saida = "";
-                Seguro seguro = null;
+                seguro = null;
                 
                 System.out.print("Informe o ID do seguro: ");
                 id = scanner.nextInt();
@@ -498,7 +577,7 @@ public class Main{
                 System.out.print("Informe o CNPJ da seguradora: ");
                 identificacao = scanner.next();
                 scanner.close();
-                Seguradora seguradora = null;
+                seguradora = null;
 
                 for (Seguradora seg1 : listaSeguradoras){
                     if (seg1.getCNPJ().equals(identificacao)){
