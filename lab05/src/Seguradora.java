@@ -138,6 +138,11 @@ class Seguradora {
         return false;
     }
 
+    public boolean gerarSeguro(Seguro seguro) throws ParseException{
+
+        return listaSeguros.add(seguro);
+    }
+
     public boolean cancelarSeguro(int id){
 
         Seguro remover = null;

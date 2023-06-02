@@ -78,6 +78,15 @@ abstract class Seguro {
         return getListaCondutores().remove(condutor);
     }
 
+    public Condutor buscarCondutor(String cpf){
+        for (Condutor condutor : listaCondutores){
+            if (condutor.getCpf().equals(cpf)){
+                return condutor;
+            }
+        }
+        return null;
+    }
+
     public boolean gerarSinistro() throws ParseException{
 
         Scanner scanner = new Scanner(System.in);
@@ -104,6 +113,15 @@ abstract class Seguro {
             return getListaSinistros().add(sinistro);
         }
 
+        return false;
+    }
+
+    public boolean gerarSinistro(Sinistro sinistro, Condutor condutor){
+
+        if (!getListaSinistros().contains(sinistro)){
+            cliente.setAtualizado(false);
+            return getListaSinistros().add(sinistro);
+        }
         return false;
     }
 

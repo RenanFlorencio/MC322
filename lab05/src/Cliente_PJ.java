@@ -64,6 +64,24 @@ public class Cliente_PJ extends Cliente {
         return selec.getListaVeiculos();
     }
 
+    public Frota buscarFrota(String code){
+        for (Frota frota : listaFrotas){
+            if (frota.getCode().equals(code)){
+                return frota;
+            }
+        }
+        return null;
+    }
+
+    public boolean adicionarVeiculoaFrota(String code, Veiculo veiculo){
+        
+        Frota frota = buscarFrota(code);
+        if (!frota.getListaVeiculos().contains(veiculo)){
+            return frota.addVeiculo(veiculo);
+        }
+        return false;
+    }
+
     public boolean atualizarFrota(){
 
         Scanner scanner = new Scanner(System.in);
