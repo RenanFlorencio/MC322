@@ -21,6 +21,7 @@ public class Seguro_PJ extends Seguro{
     @Override
     public double calculaValor(){
 
+        Cliente_PJ cliente = (Cliente_PJ)super.getCliente();
         double valor = (CalcSeguro.VALOR_BASE.getFator() * (10 + (cliente.getQtdeFuncionarios()/10 ) * 
                     (1 + 1/(cliente.getQtdeVeiculos() + 2)) *
                     (1 + 1/(cliente.calculaIdade() + 2)) * 

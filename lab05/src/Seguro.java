@@ -22,21 +22,19 @@ abstract class Seguro {
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.seguradora = seguradora;
-        this.listaSinistros = null;
-        this.listaCondutores = null;
+        this.listaSinistros = new ArrayList<Sinistro>();
+        this.listaCondutores = new ArrayList<Condutor>();
         this.valorMensal = calculaValor();
     }
 
     public String toString(){
 
         String saida = "";
-        saida = "Cliente: " + cliente.getNome() + "\nData de inicio: " + dataInicio + "\nData de fim: " + dataFim +
-            "\nSeguradora: " + seguradora.getNome() + "\n";
-        if (listaSinistros != null){
-            saida += listaSinistros;
-        }
-        saida += "\n";
-        if (listaCondutores != null){
+        saida += "Cliente: " + cliente.getNome();
+        saida += "\nData de inicio: " + dataInicio;
+        saida += "\nData de fim: " + dataFim;
+
+        if (listaCondutores.size() != 0){
             saida += listaCondutores;
         }
         saida += "\nValor mensal: " + valorMensal + "\n";
@@ -125,8 +123,27 @@ abstract class Seguro {
         return false;
     }
 
+    public String listarSinistros(){
+        String saida = "";
+        for (Sinistro sinistro : listaSinistros){
+            saida += sinistro;
+        }
+        return saida;
+    }
+
+    public String listarCondutores(){
+        String saida = "";
+        for (Condutor condutor : listaCondutores){
+            saida += condutor;
+        }
+        return saida;
+    }
+
     public int getQtdeSinistrosCondutores(){
 
+        if (getListaCondutores() == null){
+            return 0;
+        }
         int total = 0;
         for (Condutor condutor : getListaCondutores()){
             total += condutor.getListaSinistros().size();
@@ -136,6 +153,9 @@ abstract class Seguro {
 
     public int getQtdeSinistrosCliente(){
 
+        if (getListaSinistros() == null){
+            return 0;
+        }
         return getListaSinistros().size();
     }
 

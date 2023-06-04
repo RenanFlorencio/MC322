@@ -180,6 +180,16 @@ class Seguradora {
         return saida;
     }
 
+    public String listarSeguros(){
+        String saida = "";
+        int contador = 1;
+        for (Seguro seguro : listaSeguros){
+            saida += contador + "- " + seguro + "\n";
+            contador++;
+        }
+        return saida;
+    }
+
     public double calcularReceita(){
 
         double total = 0;

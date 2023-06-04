@@ -171,7 +171,9 @@ public class Cliente_PJ extends Cliente {
 
         int total = 0;
         for(Frota frota : listaFrotas){
-            total += frota.getListaVeiculos().size();
+            if (frota.getListaVeiculos() != null){
+                total += frota.getListaVeiculos().size();
+            }
         }
         return total;
     }

@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-
 public class Main{
 
     public static final Scanner scanner = new Scanner(System.in);
@@ -42,6 +41,15 @@ public class Main{
         seguropj.autorizarCondutor(condutor2);
         System.out.println("Valor do SeguroPF: " + seguropf.getValorMensal());
         seguropf.gerarSinistro(sinistro1, condutor2);
+
+        System.out.println("LISTA DE CLIENTES:");
+        System.out.println(seg.listarClientes());
+        System.out.println("LISTA DE SEGUROS:");
+        System.out.print(seg.listarSeguros());
+        System.out.println("LISTA DE VEICULOS CLIENTE PF:");
+        System.out.println(clientepf.getListaVeiculos());
+        System.out.println("LISTA DE VEICULOS CLIENTE PJ:");
+        System.out.println(frota.getListaVeiculos());
 
         MenuOperacoes[] menuOperacoes = MenuOperacoes.values();
 
